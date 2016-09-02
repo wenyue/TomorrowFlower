@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{24753dab-4c09-4246-a772-b448e8ce9354}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{43d23fbb-f0fd-44d4-92f6-05443926f9d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{6af097ae-bc59-4311-9cda-b138565a61fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\MaterialActions">
+      <UniqueIdentifier>{e3f0af5f-9f9e-4a7b-b560-0ad97aa918f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{83c6a9e0-7b44-4066-9636-716129978e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{2aefda78-040a-4309-be40-94c9e092239c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{74448fef-7249-4fb0-b1f0-fdfb16fb4024}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Base\TFDefine.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\TFApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="TomorrowFlower.h" />
+    <ClInclude Include="Base\TFBase.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\TFCommon.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\TFMaterial.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\TFMaterialInstance.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\TFMesh.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\TFShader.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\TFShaderDefine.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\TFTexture.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\TFVertex.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\MaterialActions\TFMaterialActionBindTexture.hpp">
+      <Filter>Render\MaterialActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\MaterialActions\TFMaterialAction.h">
+      <Filter>Render\MaterialActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\TFObject.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\TFSingleton.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFEntityManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFMaterialManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFModelLoader.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFModelLoader.hpp">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFModelManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFShaderManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFSingleton.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFTextureLoader.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFTextureLoader.hpp">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFTextureManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFComponentManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TFComponentImpl.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TFEntity.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TFModel.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TFObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TFPrimitive.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TFTransform.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TFCamera.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TFComponent.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\TFMeshBuilder.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Application\DllMain.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\TFApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\TFCommon.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\TFMaterial.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\TFMaterialInstance.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\TFMesh.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\TFShader.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\TFTexture.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\TFEntityManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\TFMaterialManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\TFModelManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\TFShaderManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\TFTextureManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\TFComponentManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\TFEntity.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\TFModel.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\TFPrimitive.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\TFCamera.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper\TFMeshBuilder.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
