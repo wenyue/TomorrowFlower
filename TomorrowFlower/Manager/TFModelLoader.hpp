@@ -107,7 +107,7 @@ namespace TomorrowFlower {
         
 			// Return a mesh object created from the extracted mesh data
 			auto modelMesh = TFMesh::create();
-			modelMesh->setMaterialInstance(materialInstance);
+			modelMesh->setMaterial(materialInstance);
 			modelMesh->setVertices(move(vertices), move(indices));
 			return modelMesh;
 		}
@@ -129,7 +129,7 @@ namespace TomorrowFlower {
 			for (size_t i = 0; i < diffuseMaps.size(); ++i) {
 				auto &diffuse = diffuseMaps[i];
 				string diffuseName(MODEL_TEXTURE_DIFFUSE + to_string(i));
-				materialInstance->addMaterialAction(new TFMaterialActionBindTexture(
+				materialInstance->addMaterialAction(TFMaterialActionBindTexture::create(
 					diffuseName,
 					diffuse
 				));
@@ -139,7 +139,7 @@ namespace TomorrowFlower {
 			for (size_t i = 0; i < specularMaps.size(); ++i) {
 				auto &specular = specularMaps[i];
 				string specularName(MODEL_TEXTURE_SPECULAR + to_string(i));
-				materialInstance->addMaterialAction(new TFMaterialActionBindTexture(
+				materialInstance->addMaterialAction(TFMaterialActionBindTexture::create(
 					specularName,
 					specular
 				));

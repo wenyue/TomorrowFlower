@@ -12,7 +12,7 @@ namespace TomorrowFlower {
 
 		void draw() override
 		{
-			mMaterialInstance->onRenderBegin();
+			mMaterial->onRenderBegin();
 
 			// Refresh VBO and EBO if it is dirty.
 			if (mIsDirty) {
@@ -25,12 +25,12 @@ namespace TomorrowFlower {
 			glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, 0);
 			glBindVertexArray(0);
 
-			mMaterialInstance->onRenderEnd();
+			mMaterial->onRenderEnd();
 		}
 
-		void setMaterialInstance(const TFMaterialInstance::Ptr &materialInstance) override
+		void setMaterial(const TFMaterial::Ptr &material) override
 		{
-			mMaterialInstance = materialInstance;
+			mMaterial = material;
 		}
 
 		void setVertices(vector<TFVertex> &&vertices, vector<GLuint> &&indices) override
@@ -104,7 +104,7 @@ namespace TomorrowFlower {
 
 		bool mIsDirty;
 
-		TFMaterialInstance::Ptr mMaterialInstance;
+		TFMaterial::Ptr mMaterial;
 	};
 
 	TFMesh::Ptr TFMesh::create()

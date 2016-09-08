@@ -64,12 +64,6 @@
     <ClInclude Include="Render\MaterialActions\TFMaterialAction.h">
       <Filter>Render\MaterialActions</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\TFObject.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Managers\TFSingleton.h">
-      <Filter>Base</Filter>
-    </ClInclude>
     <ClInclude Include="Manager\TFEntityManager.h">
       <Filter>Manager</Filter>
     </ClInclude>

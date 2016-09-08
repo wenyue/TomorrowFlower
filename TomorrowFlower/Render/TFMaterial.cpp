@@ -35,17 +35,25 @@ namespace TomorrowFlower {
 			mShader->unuse();
 		}
 
-		void addMaterialAction(TFMaterialAction *action) override
+		void addMaterialAction(const TFMaterialAction::Ptr &action) override
 		{
-			mActions.push_back(unique_ptr<TFMaterialAction>(action));
+			mActions.push_back(action);
 			action->onShaderChanage(mShader);
 		}
 
-	private:
-		vector<unique_ptr<TFMaterialAction>> mActions;
+		void setShader(const TFShader::Ptr &shader) override
+		{
+			mShader = shader;
+			for (auto &action : mActions) {
+				action->onShaderChanage(mShader);
+			}
+		}
 
 	private:
-		MEMBER(TFShader::Ptr, Shader)
+		vector<TFMaterialAction::Ptr> mActions;
+
+	private:
+		MEMBER_GET(TFShader::Ptr, Shader)
 		MEMBER_GET(string, Name)
 	};
 

@@ -8,6 +8,14 @@ namespace TomorrowFlower {
 	{
 		OBJECT_BODY(TFMaterialAction)
 	public:
+		static Ptr create(
+			const string &samplerName,
+			const TFTexture::Ptr &texture
+		)
+		{
+			return createObject<TFMaterialActionBindTexture>(samplerName, texture);
+		}
+
 		// Constructor
 		TFMaterialActionBindTexture(
 			const string &samplerName,

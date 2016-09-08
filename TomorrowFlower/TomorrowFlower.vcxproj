@@ -73,7 +73,6 @@
     <ClInclude Include="Base\TFCommon.h" />
     <ClInclude Include="Base\TFDefine.h" />
     <ClInclude Include="Helper\TFMeshBuilder.h" />
-    <ClInclude Include="Managers\TFSingleton.h" />
     <ClInclude Include="Manager\TFComponentManager.h" />
     <ClInclude Include="Manager\TFEntityManager.h" />
     <ClInclude Include="Manager\TFMaterialManager.h" />
@@ -85,7 +84,6 @@
     <ClInclude Include="Manager\TFTextureLoader.h" />
     <ClInclude Include="Manager\TFTextureLoader.hpp" />
     <ClInclude Include="Manager\TFTextureManager.h" />
-    <ClInclude Include="Objects\TFObject.h" />
     <ClInclude Include="Object\TFCamera.h" />
     <ClInclude Include="Object\TFComponent.h" />
     <ClInclude Include="Object\TFComponentImpl.h" />
