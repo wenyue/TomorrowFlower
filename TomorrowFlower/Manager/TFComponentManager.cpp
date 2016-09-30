@@ -10,7 +10,7 @@ namespace TomorrowFlower {
 			mHookComponents.resize(COMPONENT_HOOK_MAX);
 		}
 
-		void registerComponent(ComponentHook componentHook, const TFComponent::Ptr &component) override
+		void registerComponent(ComponentHook componentHook, const TFComponent::Ptr &component, int priority) override
 		{
 			mHookComponents[componentHook].push_back(component);
 		}

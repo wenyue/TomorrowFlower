@@ -12,11 +12,16 @@
 namespace TomorrowFlower {
 	TFApplication* app = nullptr;
 
-	TFApplication::TFApplication()
-		: mWidth(800)
-		, mHeight(600)
+	TFApplication* TFApplication::getInstance()
 	{
-		TFAssert(!app, "multiply applications have been created");
+		return app;
+	}
+
+	TFApplication::TFApplication()
+		: mWidth(0)
+		, mHeight(0)
+	{
+		TFAssert(!app, "Look forward to create multiple applications");
 		app = this;
 	};
 
@@ -69,7 +74,6 @@ namespace TomorrowFlower {
 
 	void TFApplication::run()
 	{
-		// Call the relevant hook
 		beginPlay();
 
 		// Game loop
@@ -80,11 +84,13 @@ namespace TomorrowFlower {
 			// Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
 			glfwPollEvents();
 
-			// Call the relevant hook
+			// tick
 			end = clock();
 			float deltaSeconds = (static_cast<float>(end - start)) / CLOCKS_PER_SEC;
 			start = end;
 			tick(deltaSeconds);
+
+			// draw
 			draw();
 
 			// Swap the screen buffers

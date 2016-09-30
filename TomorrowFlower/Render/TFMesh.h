@@ -16,6 +16,6 @@ namespace TomorrowFlower {
 		virtual void draw() = 0;
 
 		virtual void setVertices(vector<TFVertex> &&vertices, vector<GLuint> &&indices) = 0;
-		virtual void setMaterial(const TFMaterial::Ptr &material) = 0;
+		PORPERTY(TFMaterial::Ptr, Material);
 	};
 }

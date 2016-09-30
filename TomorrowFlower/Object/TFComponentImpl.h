@@ -16,12 +16,12 @@ namespace TomorrowFlower {
 			TFComponentManager::getInstance()->registerComponent(componentHook, self());
 		}
 
-		virtual void setEntity(TFEntity::Ptr entity) override
+		virtual void setEntity(const TFEntity::Ptr &entity) override
 		{
 			mEntity = entity;
 		}
 
-		virtual TFEntity::Ptr entity() override
+		virtual TFEntity::Ptr getEntity() override
 		{
 			return mEntity.lock();
 		}

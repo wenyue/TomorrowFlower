@@ -9,6 +9,9 @@ namespace TomorrowFlower {
 	class TF_DLL TFApplication
 	{
 	public:
+		static TFApplication* getInstance();
+
+	public:
 		TFApplication();
 		~TFApplication();
 
@@ -23,7 +26,9 @@ namespace TomorrowFlower {
 		virtual void draw();
 		virtual void keyPress(int key, int action, int mods);
 
-	private:
+		virtual int getWidth() { return mWidth; }
+		virtual int getHeight() { return mHeight; }
+	protected:
 		GLFWwindow* mWindow;
 
 		int mWidth;

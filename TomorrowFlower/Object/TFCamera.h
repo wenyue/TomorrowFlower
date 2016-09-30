@@ -11,7 +11,7 @@ namespace TomorrowFlower {
 		static Ptr create();
 
 		virtual void beginPlay() override = 0;
-		virtual void tick(float DeltaSeconds) override = 0;
+		virtual void draw() override = 0;
 
 		// Active current camera to be the main camera.
 		static void setActiveCamera(const Ptr &camera);

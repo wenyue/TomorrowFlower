@@ -47,7 +47,9 @@ namespace TomorrowFlower {
 		///////////////////////////////////////////////////////////////////////
 		// Uniform
 		enum UniformType {
-			UNIFORM_CAMERA_OFFSET,
+			UNIFORM_PROJECTION,
+			UNIFORM_VIEW,
+			UNIFORM_MODEL,
 
 			UNIFORM_MAX,
 		};

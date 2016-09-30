@@ -28,11 +28,6 @@ namespace TomorrowFlower {
 			mMaterial->onRenderEnd();
 		}
 
-		void setMaterial(const TFMaterial::Ptr &material) override
-		{
-			mMaterial = material;
-		}
-
 		void setVertices(vector<TFVertex> &&vertices, vector<GLuint> &&indices) override
 		{
 			mVertices = move(vertices);
@@ -104,7 +99,7 @@ namespace TomorrowFlower {
 
 		bool mIsDirty;
 
-		TFMaterial::Ptr mMaterial;
+		MEMBER(TFMaterial::Ptr, Material);
 	};
 
 	TFMesh::Ptr TFMesh::create()

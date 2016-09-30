@@ -52,7 +52,6 @@ namespace TomorrowFlower {
 	private:
 		vector<TFMaterialAction::Ptr> mActions;
 
-	private:
 		MEMBER_GET(TFShader::Ptr, Shader)
 		MEMBER_GET(string, Name)
 	};

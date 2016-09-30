@@ -13,20 +13,24 @@ PORPERTY_GET(TYPE, PORPERTY_NAME)				\
 PORPERTY_SET(TYPE, PORPERTY_NAME)
 
 #define PORPERTY_GET(TYPE, PORPERTY_NAME)		\
-public: virtual TYPE get##PORPERTY_NAME() = 0;
+virtual TYPE get##PORPERTY_NAME() = 0;
 
 #define PORPERTY_SET(TYPE, PORPERTY_NAME)		\
-public: virtual void set##PORPERTY_NAME(const TYPE &value) = 0;
+virtual void set##PORPERTY_NAME(const TYPE &value) = 0;
 
-#define MEMBER(TYPE, PORPERTY_NAME)				\
-private: TYPE m##PORPERTY_NAME;					\
-public: TYPE get##PORPERTY_NAME() {return m##PORPERTY_NAME;}	\
-public: void set##PORPERTY_NAME(const TYPE &value) {m##PORPERTY_NAME=value;}
+#define MEMBER(TYPE, PORPERTY_NAME)					\
+public: TYPE get##PORPERTY_NAME()					\
+{ return m##PORPERTY_NAME; }						\
+public: void set##PORPERTY_NAME(const TYPE &value)	\
+{ m##PORPERTY_NAME = value; }						\
+private: TYPE m##PORPERTY_NAME;
 
-#define MEMBER_GET(TYPE, PORPERTY_NAME)			\
-private: TYPE m##PORPERTY_NAME;					\
-public: TYPE get##PORPERTY_NAME() {return m##PORPERTY_NAME;}
+#define MEMBER_GET(TYPE, PORPERTY_NAME)				\
+public: TYPE get##PORPERTY_NAME()					\
+{ return m##PORPERTY_NAME; }						\
+private: TYPE m##PORPERTY_NAME;
 
-#define MEMBER_GET_SET(TYPE, PORPERTY_NAME)		\
-private: TYPE m##PORPERTY_NAME;					\
-public: void set##PORPERTY_NAME(const TYPE &value) {m##PORPERTY_NAME=value;}
+#define MEMBER_SET(TYPE, PORPERTY_NAME)				\
+public: void set##PORPERTY_NAME(const TYPE &value)	\
+{ m##PORPERTY_NAME = value; }						\
+private: TYPE m##PORPERTY_NAME;

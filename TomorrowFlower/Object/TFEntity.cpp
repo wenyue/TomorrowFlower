@@ -61,16 +61,6 @@ namespace TomorrowFlower {
 			component->setEntity(self());
 		}
 
-		TFVec3 getPosition() override
-		{
-			return transform.translation;
-		}
-
-		void setPosition(const TFVec3 &position)
-		{
-			transform.translation = position;
-		}
-
 	private:
 		vector<Ptr> mChildren;
 		TFEntity::WPtr mParent;

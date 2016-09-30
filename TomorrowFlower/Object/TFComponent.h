@@ -25,7 +25,6 @@ namespace TomorrowFlower {
 		virtual void draw() {};
 		virtual void keyPress(int key, int action, int mods) {};
 
-		virtual void setEntity(shared_ptr<TFEntity> entity) = 0;
-		virtual shared_ptr<TFEntity> entity() = 0;
+		PORPERTY(shared_ptr<TFEntity>, Entity);
 	};
 }

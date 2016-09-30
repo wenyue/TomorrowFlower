@@ -31,7 +31,11 @@ namespace TomorrowFlower {
 
 		// About transform
 		TFTransform transform;
-		PORPERTY(TFVec3, Position)
+		TFVec3 &position = transform.translation;
+		inline TFVec3 forward() { return transform.forward(); }
+		inline TFVec3 up() { return transform.up(); }
+		inline TFVec3 left() { return transform.left(); }
+		inline void lookAt(const TFVec3 &center) { transform.lookAt(center); }
 
 		// Porpeties
 		PORPERTY_GET(string, Name)

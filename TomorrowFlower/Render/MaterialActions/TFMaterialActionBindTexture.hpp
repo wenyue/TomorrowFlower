@@ -44,11 +44,6 @@ namespace TomorrowFlower {
 			}
 		}
 
-		void onRenderEnd(const TFShader::Ptr &shader) override
-		{
-
-		}
-
 	private:
 		string mSamplerName;
 		TFTexture::Ptr mTexture;

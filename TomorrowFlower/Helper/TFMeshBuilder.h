@@ -4,5 +4,5 @@
 #include "TFMesh.h"
 
 namespace TomorrowFlower {
-	TFMesh::Ptr buildCube(const TFVec3 &size);
+	TF_DLL TFMesh::Ptr buildCube(const TFVec3 &size);
 }

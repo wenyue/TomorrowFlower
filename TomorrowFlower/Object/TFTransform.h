@@ -22,7 +22,7 @@ namespace TomorrowFlower {
 			return matrix;
 		}
 
-		TFVec3 toward()
+		TFVec3 forward()
 		{
 			return rotation * TFVec3(0, 0, 1);
 		}
@@ -37,9 +37,9 @@ namespace TomorrowFlower {
 			return rotation * TFVec3(-1, 0, 0);
 		}
 
-		void lookAt(const TFVec3 &eye)
+		void lookAt(const TFVec3 &center)
 		{
-			lookAt(eye, up());
+			lookAt(center, up());
 		}
 
 		void lookAt(const TFVec3 &center, const TFVec3 &up)
