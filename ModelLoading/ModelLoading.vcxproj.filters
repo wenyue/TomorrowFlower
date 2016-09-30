@@ -6,4 +6,17 @@
   <ItemGroup>
     <ClInclude Include="CameraController.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{da795185-38a8-4f6e-9cda-1a25e937ca2d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shader\default.ps">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="res\shader\default.vs">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
 </Project>

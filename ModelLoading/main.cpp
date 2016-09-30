@@ -2,6 +2,8 @@
 #include "TFCamera.h"
 #include "TFEntity.h"
 #include "TFMaterial.h"
+#include "TFMeshBuilder.h"
+#include "TFPrimitive.h"
 
 #include "CameraController.hpp"
 
@@ -11,21 +13,19 @@ class Application : public TomorrowFlower::TFApplication
 {
 	SUPER(TomorrowFlower::TFApplication)
 public:
+	Application()
+	{
+		mWidth = 800;
+		mHeight = 600;
+	}
+
 	virtual void beginPlay() override
 	{
 		auto shader = TFShader::create("res/shader/default.vs", "res/shader/default.ps");
 		TFMaterial::createByEngine(TFMaterial::DEFAULT_MATERIAL, shader);
 
-		/*
-		auto model = TFModel::create("res/char/nanosuit/nanosuit.obj");
-		auto entity = TFEntity::create("nanosuit");
-		entity->addComponent(model);*/
-
-		auto entity = TFEntity::create("camera");
-		auto camera = TFCamera::create();
-		entity->addComponent(camera);
-		auto cameraController = createObject<CameraController>();
-		entity->addComponent(cameraController);
+		createCamera();
+		createCube();
 
 		Super::beginPlay();
 	}
@@ -36,6 +36,24 @@ public:
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+	}
+
+private:
+	void createCamera()
+	{
+		auto entity = TFEntity::create("camera");
+		auto camera = TFCamera::create();
+		entity->addComponent(camera);
+		auto cameraController = createObject<CameraController>();
+		entity->addComponent(cameraController);
+	}
+
+	void createCube()
+	{
+		auto entity = TFEntity::create("cube");
+		auto cube = TFPrimitive::create();
+		cube->setMesh(buildCube(TFVec3(0.5, 0.5, 1)));
+		entity->addComponent(cube);
 	}
 };
 
