@@ -75,6 +75,8 @@
     <ClInclude Include="Helper\TFMeshBuilder.h" />
     <ClInclude Include="Manager\TFComponentManager.h" />
     <ClInclude Include="Manager\TFEntityManager.h" />
+    <ClInclude Include="Manager\TFEventProtocol.h" />
+    <ClInclude Include="Manager\TFEventProtocol.cpp" />
     <ClInclude Include="Manager\TFMaterialManager.h" />
     <ClInclude Include="Manager\TFModelLoader.h" />
     <ClInclude Include="Manager\TFModelLoader.hpp" />

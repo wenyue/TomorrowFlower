@@ -9,7 +9,7 @@ namespace TomorrowFlower {
 	{
 		OBJECT_BODY(TFMaterialAction)
 	public:
-		virtual void onShaderChanage(const TFShader::Ptr &shader) {};
+		virtual void onInit(const TFShader::Ptr &shader) {};
 		virtual void onRenderBegin(const TFShader::Ptr &shader) {};
 		virtual void onRenderEnd(const TFShader::Ptr &shader) {};
 	};

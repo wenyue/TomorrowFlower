@@ -1,4 +1,4 @@
-#include "TomorrowFlower.h"
+/*#include "TomorrowFlower.h"
 #include "TFCamera.h"
 #include "TFEntity.h"
 #include "TFMaterial.h"
@@ -43,6 +43,7 @@ private:
 	{
 		auto entity = TFEntity::create("camera");
 		auto camera = TFCamera::create();
+		camera->registerEvent(1, []() { TFLog("wenyue"); });
 		entity->addComponent(camera);
 		auto cameraController = createObject<CameraController>();
 		entity->addComponent(cameraController);
@@ -64,4 +65,43 @@ int main()
 	app.run();
 	
 	return 0;
+}*/
+
+#include "TFBase.h"
+#include "TFObject.h"
+#include "TFEventProtocol.h"
+using namespace TomorrowFlower;
+
+class EventProtocol : public TFEventProtocol
+{
+public:
+};
+
+class Object : public TFObject
+{
+public:
+	void log(int a, int b)
+	{
+		TFLog("%d %d %d", a, b, c);
+	}
+
+	template <typename _CB>
+	auto bind(_CB callback)
+	{
+		/*return [=]() {
+			this->*callback();
+		};*/
+	}
+
+	int c;
+};
+
+int main()
+{
+	auto event = TFEvent<void(int, int)>();
+	auto protocol = EventProtocol();
+	auto obj = createObject<Object>();
+	obj->c = 3;
+	auto handler = protocol.registerEvent(event, [=](int a, int b) { obj->log(a, b); });
+	protocol.dispatchEvent(event, 1, 2);
 }

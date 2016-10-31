@@ -5,7 +5,7 @@
 namespace TomorrowFlower {
 	// Base class of other singleton classes.
 	template <class T>
-	class TF_DLL TFSingleton
+	class TFSingleton
 	{
 	public:
 		static T* getInstance()

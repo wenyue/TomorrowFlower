@@ -17,27 +17,33 @@ namespace TomorrowFlower {
 
 		void callComponentDraw() override
 		{
-			for (auto &component : mHookComponents[COMPONENT_HOOK_DRAW]) {
-				component->draw();
+			auto &components = mHookComponents[COMPONENT_HOOK_DRAW];
+			for (auto it = components.rbegin(); it != components.rend(); ++it) {
+				auto component = it->lock();
+				if (component) component->draw(); else components.erase(it.base());
 			}
 		}
 
 		void callComponentTick(float deltaSeconds) override
 		{
-			for (auto &component : mHookComponents[COMPONENT_HOOK_TICK]) {
-				component->tick(deltaSeconds);
+			auto &components = mHookComponents[COMPONENT_HOOK_DRAW];
+			for (auto it = components.rbegin(); it != components.rend(); ++it) {
+				auto component = it->lock();
+				if (component) component->tick(deltaSeconds); else components.erase(it.base());
 			}
 		}
 
 		void callComponentKeyPress(int key, int action, int mods) override
 		{
-			for (auto &component : mHookComponents[COMPONENT_HOOK_KEYPRESS]) {
-				component->keyPress(key, action, mods);
+			auto &components = mHookComponents[COMPONENT_HOOK_DRAW];
+			for (auto it = components.rbegin(); it != components.rend(); ++it) {
+				auto component = it->lock();
+				if (component) component->keyPress(key, action, mods); else components.erase(it.base());
 			}
 		}
 
 	private:
-		typedef vector<TFComponent::Ptr> ComponentArray;
+		typedef vector<TFComponent::WPtr> ComponentArray;
 		vector<ComponentArray> mHookComponents;
 	};
 

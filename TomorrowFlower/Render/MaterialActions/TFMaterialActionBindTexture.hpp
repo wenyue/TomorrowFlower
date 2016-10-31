@@ -27,7 +27,7 @@ namespace TomorrowFlower {
 		{
 		}
 
-		void onShaderChanage(const TFShader::Ptr &shader) override
+		void onInit(const TFShader::Ptr &shader) override
 		{
 			mTextureUnit = shader->getUnusedTextureUnit();
 

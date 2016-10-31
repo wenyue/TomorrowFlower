@@ -9,10 +9,7 @@ namespace TomorrowFlower {
 	{
 		OBJECT_BODY(TFMaterialInstance)
 	public:
-		static Ptr create();
-		static Ptr create(const TFMaterial::Ptr material);
-
-		virtual void setMaterial(const TFMaterial::Ptr &material) = 0;
+		static Ptr create(const TFMaterial::Ptr &material);
 
 		// TFMaterial functions
 		virtual void onRenderBegin() = 0;
@@ -20,7 +17,7 @@ namespace TomorrowFlower {
 
 		virtual void addMaterialAction(const TFMaterialAction::Ptr &action) = 0;
 
-		PORPERTY(TFShader::Ptr, Shader)
+		PORPERTY_GET(TFShader::Ptr, Shader)
 		PORPERTY_GET(string, Name)
 	};
 }

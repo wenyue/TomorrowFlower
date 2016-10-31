@@ -24,7 +24,7 @@ namespace TomorrowFlower {
 
 		virtual void addMaterialAction(const TFMaterialAction::Ptr &action) = 0;
 
-		PORPERTY(TFShader::Ptr, Shader)
+		PORPERTY_GET(TFShader::Ptr, Shader)
 		PORPERTY_GET(string, Name)
 	};
 }

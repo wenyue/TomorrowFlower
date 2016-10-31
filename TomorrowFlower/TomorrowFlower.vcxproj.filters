@@ -97,9 +97,6 @@
     <ClInclude Include="Manager\TFComponentManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Object\TFComponentImpl.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Object\TFEntity.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -123,6 +120,15 @@
     </ClInclude>
     <ClInclude Include="Helper\TFMeshBuilder.h">
       <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFEventProtocol.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TFComponentImpl.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFEventProtocol.cpp">
+      <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

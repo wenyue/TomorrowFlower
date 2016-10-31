@@ -15,6 +15,7 @@ namespace TomorrowFlower {
 			: mName(name)
 			, mShader(shader)
 		{
+			setupShader();
 		}
 
 		void onRenderBegin() override
@@ -38,15 +39,13 @@ namespace TomorrowFlower {
 		void addMaterialAction(const TFMaterialAction::Ptr &action) override
 		{
 			mActions.push_back(action);
-			action->onShaderChanage(mShader);
+			action->onInit(mShader);
 		}
 
-		void setShader(const TFShader::Ptr &shader) override
+	private:
+		void setupShader()
 		{
-			mShader = shader;
-			for (auto &action : mActions) {
-				action->onShaderChanage(mShader);
-			}
+
 		}
 
 	private:

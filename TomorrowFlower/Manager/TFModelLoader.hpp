@@ -114,8 +114,7 @@ namespace TomorrowFlower {
 
 		TFMaterialInstance::Ptr processMaterial(aiMaterial* material, const string &directory)
 		{
-			auto materialInstance = TFMaterialInstance::create();
-			materialInstance->setMaterial(TFMaterial::create(TFMaterial::DEFAULT_MATERIAL));
+			auto materialInstance = TFMaterialInstance::create(TFMaterial::create(TFMaterial::DEFAULT_MATERIAL));
 
 			// We assume a convention for sampler names in the shaders. Each diffuse texture should be named
 			// as 'texture_diffuseN' where N is a sequential number ranging from 1 to MAX_SAMPLER_NUMBER. 

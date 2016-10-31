@@ -5,12 +5,9 @@ namespace TomorrowFlower {
 	class TFMaterialInstanceImplement : public TFMaterialInstance
 	{
 	public:
-		void setMaterial(const TFMaterial::Ptr &material) override
+		TFMaterialInstanceImplement(const TFMaterial::Ptr &material)
+			: mMaterial(material)
 		{
-			mMaterial = material;
-			for (auto &action : mActions) {
-				action->onShaderChanage(mMaterial->getShader());
-			}
 		}
 
 		void onRenderBegin() override
@@ -35,15 +32,7 @@ namespace TomorrowFlower {
 		{
 			mActions.push_back(action);
 			if (mMaterial) {
-				action->onShaderChanage(mMaterial->getShader());
-			}
-		}
-
-		void setShader(const TFShader::Ptr &shader) override
-		{
-			mMaterial->setShader(shader);
-			for (auto &action : mActions) {
-				action->onShaderChanage(mMaterial->getShader());
+				action->onInit(mMaterial->getShader());
 			}
 		}
 
@@ -62,16 +51,10 @@ namespace TomorrowFlower {
 		vector<TFMaterialAction::Ptr> mActions;
 	};
 
-	TFMaterialInstance::Ptr TFMaterialInstance::create()
-	{
-		return createObject<TFMaterialInstanceImplement>();
-	}
-
-	TFMaterialInstance::Ptr TFMaterialInstance::create(const TFMaterial::Ptr material)
+	TFMaterialInstance::Ptr TFMaterialInstance::create(const TFMaterial::Ptr &material)
 	{
 
-		auto materialInstance = createObject<TFMaterialInstanceImplement>();
-		materialInstance->setMaterial(material);
+		auto materialInstance = createObject<TFMaterialInstanceImplement>(material);
 		return materialInstance;
 	}
 }
