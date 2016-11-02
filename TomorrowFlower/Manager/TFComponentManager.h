@@ -7,7 +7,7 @@ namespace TomorrowFlower {
 	class TF_DLL TFComponentManager
 	{
 	public:
-		static TFComponentManager* getInstance();
+		static TFComponentManager *getInstance();
 		static void destroy();
 
 		virtual void registerComponent(ComponentHook componentHook, const TFComponent::Ptr &component, int priority = 0) = 0;

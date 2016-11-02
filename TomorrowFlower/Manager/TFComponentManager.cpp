@@ -47,7 +47,7 @@ namespace TomorrowFlower {
 		vector<ComponentArray> mHookComponents;
 	};
 
-	TFComponentManager* TFComponentManager::getInstance()
+	TFComponentManager *TFComponentManager::getInstance()
 	{
 		return TFComponentManagerImplement::TFSingleton::getInstance();
 	}

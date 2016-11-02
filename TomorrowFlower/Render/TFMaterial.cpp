@@ -2,7 +2,7 @@
 #include "TFMaterialManager.h"
 
 namespace TomorrowFlower {
-	const char* TFMaterial::DEFAULT_MATERIAL = "__default__";
+	const char *TFMaterial::DEFAULT_MATERIAL = "__default__";
 
 	class TFMaterialImplement : public TFMaterial
 	{

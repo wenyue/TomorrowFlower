@@ -10,9 +10,9 @@
 #define MINOR_VERSION 3
 
 namespace TomorrowFlower {
-	TFApplication* app = nullptr;
+	TFApplication *app = nullptr;
 
-	TFApplication* TFApplication::getInstance()
+	TFApplication *TFApplication::getInstance()
 	{
 		return app;
 	}
@@ -51,7 +51,7 @@ namespace TomorrowFlower {
 
 		glfwMakeContextCurrent(mWindow);
 		// Set the required callback functions
-		auto keyCallback = [](GLFWwindow* window, int key, int scancode, int action, int mods)
+		auto keyCallback = [](GLFWwindow *window, int key, int scancode, int action, int mods)
 		{
 			app->keyPress(key, action, mods);
 		};

@@ -21,7 +21,7 @@ namespace TomorrowFlower {
 		unordered_map<string, TFMaterial::Ptr> mMaterials;
 	};
 
-	TFMaterialManager* TFMaterialManager::getInstance()
+	TFMaterialManager *TFMaterialManager::getInstance()
 	{
 		return TFMaterialManagerImplement::TFSingleton::getInstance();
 	}

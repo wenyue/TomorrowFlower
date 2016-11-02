@@ -116,8 +116,8 @@ namespace TomorrowFlower {
 			{
 				std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
 			}
-			const GLchar* vShaderCode = vertexCode.c_str();
-			const GLchar * fShaderCode = fragmentCode.c_str();
+			const GLchar *vShaderCode = vertexCode.c_str();
+			const GLchar *fShaderCode = fragmentCode.c_str();
 			// 2. Compile shaders
 			GLuint vertex, fragment;
 			GLint success;
@@ -188,7 +188,7 @@ namespace TomorrowFlower {
 			GLint length;
 			glGetProgramiv(mProgram, GL_ACTIVE_ATTRIBUTES, &activeAttribs);
 			glGetProgramiv(mProgram, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &length);
-			GLchar* attribName = (GLchar*)alloca(length + 1);
+			GLchar *attribName = (GLchar*)alloca(length + 1);
 			attribName[length] = '\0';
 			Attrib attrib;
 
@@ -223,7 +223,7 @@ namespace TomorrowFlower {
 			GLint length;
 			glGetProgramiv(mProgram, GL_ACTIVE_UNIFORMS, &activeUniforms);
 			glGetProgramiv(mProgram, GL_ACTIVE_UNIFORM_MAX_LENGTH, &length);
-			GLchar* uniformName = (GLchar*)alloca(length + 1);
+			GLchar *uniformName = (GLchar*)alloca(length + 1);
 			uniformName[length] = '\0';
 			Uniform uniform;
 

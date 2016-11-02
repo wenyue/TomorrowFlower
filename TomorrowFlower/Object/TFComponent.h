@@ -2,6 +2,7 @@
 
 #include "TFBase.h"
 #include "TFObject.h"
+#include "TFEventProtocol.h"
 
 namespace TomorrowFlower {
 	enum ComponentHook {
@@ -12,12 +13,28 @@ namespace TomorrowFlower {
 		COMPONENT_HOOK_MAX,
 	};
 
+	DEFINE_EVENT(DESTROY, void(void));
+
 	class TFEntity;
 
-	class TF_DLL TFComponent : public TFObject
+	class TF_DLL TFComponent : public TFObject, TFEventProtocol
 	{
 		OBJECT_BODY(TFComponent)
 	public:
+		~TFComponent()
+		{
+			dispatchEvent<DESTROY>();
+		}
+
+		template<typename HandlerPtr>
+		void autoReleaseHandler(const HandlerPtr &handler)
+		{
+			registerEvent<DESTROY>([=]() {
+				auto ptr = handler.lock();
+				if (ptr) ptr->clear();
+			});
+		}
+
 		// Some hook
 		virtual void registerHook(ComponentHook componentHook) = 0;
 		virtual void beginPlay() {};

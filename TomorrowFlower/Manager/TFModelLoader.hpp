@@ -14,7 +14,7 @@ namespace TomorrowFlower {
 		{
 			// Read file via ASSIMP
 			Assimp::Importer importer;
-			const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+			const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
     
 			// Check for errors
 			if(!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
@@ -33,7 +33,7 @@ namespace TomorrowFlower {
 		}
 
 	private:
-		TFModelNode::Ptr processNode(aiNode* node, const aiScene* scene, const string &directory)
+		TFModelNode::Ptr processNode(aiNode *node, const aiScene *scene, const string &directory)
 		{
 			vector<TFMesh::Ptr> meshes;
 			vector<TFModelNode::Ptr> subNodes;
@@ -43,7 +43,7 @@ namespace TomorrowFlower {
 			{
 				// The node object only contains indices to index the actual objects in the scene. 
 				// The scene contains all the data, node is just to keep stuff organized (like relations between nodes).
-				aiMesh* mesh = scene->mMeshes[node->mMeshes[i]]; 
+				aiMesh *mesh = scene->mMeshes[node->mMeshes[i]]; 
 				meshes.push_back(processMesh(mesh, scene, directory));
 			}
 			// After we've processed all of the meshes (if any) we then recursively process each of the children nodes
@@ -55,7 +55,7 @@ namespace TomorrowFlower {
 			return TFModelNode::createByEngine(meshes, subNodes);
 		}
 
-		TFMesh::Ptr processMesh(aiMesh* mesh, const aiScene* scene, const string &directory)
+		TFMesh::Ptr processMesh(aiMesh *mesh, const aiScene *scene, const string &directory)
 		{
 			vector<TFVertex> vertices;
 			vector<GLuint> indices;
@@ -101,7 +101,7 @@ namespace TomorrowFlower {
 			// Process materials
 			if (mesh->mMaterialIndex >= 0)
 			{
-				aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+				aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
 				materialInstance = processMaterial(material, directory);
 			}
         
@@ -112,7 +112,7 @@ namespace TomorrowFlower {
 			return modelMesh;
 		}
 
-		TFMaterialInstance::Ptr processMaterial(aiMaterial* material, const string &directory)
+		TFMaterialInstance::Ptr processMaterial(aiMaterial *material, const string &directory)
 		{
 			auto materialInstance = TFMaterialInstance::create(TFMaterial::create(TFMaterial::DEFAULT_MATERIAL));
 
@@ -147,7 +147,7 @@ namespace TomorrowFlower {
 			return materialInstance;
 		}
 
-		vector<TFTexture::Ptr> loadMaterialTextures(aiMaterial* mat, aiTextureType type, const string &directory)
+		vector<TFTexture::Ptr> loadMaterialTextures(aiMaterial *mat, aiTextureType type, const string &directory)
 		{
 			vector<TFTexture::Ptr> textures;
 			for(GLuint i = 0; i < mat->GetTextureCount(type); i++)

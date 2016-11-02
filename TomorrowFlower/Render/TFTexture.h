@@ -12,7 +12,7 @@ namespace TomorrowFlower {
 
 		static Ptr createByEngine(
 			const string &path,
-			const unsigned char* image,
+			const unsigned char *image,
 			int width,
 			int height
 		);

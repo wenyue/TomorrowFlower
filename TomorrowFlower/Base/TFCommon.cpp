@@ -8,7 +8,7 @@ namespace TomorrowFlower {
 
 static const int MAX_LEN = 16*1024;
 
-void TFLog(const char* pszFormat, ...)
+void TFLog(const char *pszFormat, ...)
 {
 	static char szBuf[MAX_LEN];
 
@@ -26,7 +26,7 @@ void TFLog(const char* pszFormat, ...)
 	printf("%s\n", szBuf);
 }
 
-void TFMessageBox(const char* pszTitle, const char* pszFormat, ...)
+void TFMessageBox(const char *pszTitle, const char *pszFormat, ...)
 {
 	static char szBuf[MAX_LEN];
 

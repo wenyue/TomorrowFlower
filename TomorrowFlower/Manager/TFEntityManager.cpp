@@ -11,7 +11,7 @@ namespace TomorrowFlower {
 			mRootEntity = rootEntity;
 		}
 
-		TFEntity* getRootEntity() override
+		TFEntity *getRootEntity() override
 		{
 			return mRootEntity.get();
 		}
@@ -20,7 +20,7 @@ namespace TomorrowFlower {
 		TFEntity::Ptr mRootEntity;
 	};
 
-	TFEntityManager* TFEntityManager::getInstance()
+	TFEntityManager *TFEntityManager::getInstance()
 	{
 		return TFEntityManagerImplement::TFSingleton::getInstance();
 	}

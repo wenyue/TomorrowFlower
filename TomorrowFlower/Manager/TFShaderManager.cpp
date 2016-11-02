@@ -28,7 +28,7 @@ namespace TomorrowFlower {
 		unordered_map<size_t, TFShader::Ptr> mShaders;
 	};
 
-	TFShaderManager* TFShaderManager::getInstance()
+	TFShaderManager *TFShaderManager::getInstance()
 	{
 		return TFShaderManagerImplement::TFSingleton::getInstance();
 	}

@@ -7,7 +7,7 @@ namespace TomorrowFlower {
 	class TF_DLL TFShaderManager
 	{
 	public:
-		static TFShaderManager* getInstance();
+		static TFShaderManager *getInstance();
 		static void destroy();
 
 		virtual void addShader(const TFShader::Ptr &shader) = 0;

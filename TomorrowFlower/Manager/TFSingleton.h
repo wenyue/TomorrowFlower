@@ -5,10 +5,10 @@
 namespace TomorrowFlower {
 	// Base class of other singleton classes.
 	template <class T>
-	class TFSingleton
+	class TF_DLL TFSingleton
 	{
 	public:
-		static T* getInstance()
+		static T *getInstance()
 		{
 			if (mInstance == nullptr) {
 				mInstance = new T();
@@ -27,10 +27,10 @@ namespace TomorrowFlower {
 		~TFSingleton() {};
 
 	private:
-		static T* mInstance;
+		static T *mInstance;
 		TFSingleton(const TFSingleton &) {};
 	};
 
 	template<class T>
-	T* TFSingleton<T>::mInstance = nullptr;
+	T *TFSingleton<T>::mInstance = nullptr;
 }

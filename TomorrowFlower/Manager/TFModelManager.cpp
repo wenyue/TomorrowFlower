@@ -12,12 +12,12 @@ namespace TomorrowFlower {
 			mLoader = TFModelLoaderImplement::getInstance();
 		}
 
-		void setModelLoader(TFModelLoader* loader) override
+		void setModelLoader(TFModelLoader *loader) override
 		{
 			mLoader = loader;
 		}
 
-		TFModelLoader* getModelLoader() override
+		TFModelLoader *getModelLoader() override
 		{
 			return mLoader;
 		}
@@ -41,11 +41,11 @@ namespace TomorrowFlower {
 		}
 
 	private:
-		TFModelLoader* mLoader;
+		TFModelLoader *mLoader;
 		unordered_map<string, TFModel::Ptr> mModels;
 	};
 
-	TFModelManager* TFModelManager::getInstance()
+	TFModelManager *TFModelManager::getInstance()
 	{
 		return TFModelManagerImplement::TFSingleton::getInstance();
 	}

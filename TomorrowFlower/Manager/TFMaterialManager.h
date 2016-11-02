@@ -7,7 +7,7 @@ namespace TomorrowFlower {
 	class TF_DLL TFMaterialManager
 	{
 	public:
-		static TFMaterialManager* getInstance();
+		static TFMaterialManager *getInstance();
 		static void destroy();
 
 		virtual void addMaterial(const TFMaterial::Ptr &material) = 0;

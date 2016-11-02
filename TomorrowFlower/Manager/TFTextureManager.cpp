@@ -12,12 +12,12 @@ namespace TomorrowFlower {
 			mLoader = TFTextureLoaderImplement::getInstance();
 		}
 
-		void setTextureLoader(TFTextureLoader* loader) override
+		void setTextureLoader(TFTextureLoader *loader) override
 		{
 			mLoader = loader;
 		}
 
-		TFTextureLoader* getTextureLoader() override
+		TFTextureLoader *getTextureLoader() override
 		{
 			return mLoader;
 		}
@@ -37,11 +37,11 @@ namespace TomorrowFlower {
 		}
 
 	private:
-		TFTextureLoader* mLoader;
+		TFTextureLoader *mLoader;
 		unordered_map<string, TFTexture::Ptr> mTextures;
 	};
 
-	TFTextureManager* TFTextureManager::getInstance()
+	TFTextureManager *TFTextureManager::getInstance()
 	{
 		return TFTextureManagerImplement::TFSingleton::getInstance();
 	}

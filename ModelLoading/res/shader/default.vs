@@ -7,5 +7,5 @@ uniform mat4 TF_model;
 
 void main()
 {
-	gl_Position = TF_projection * view * model * vec4(_position, 1.0f);
+	gl_Position = TF_projection * TF_view * TF_model * vec4(TF_position, 1.0f);
 }

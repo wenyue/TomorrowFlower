@@ -3,36 +3,27 @@
 #include "TFBase.h"
 #include <functional>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace TomorrowFlower {
-	
-	static int uniqueId = 0;
-
-	template <typename T>
+	template <int _ID, typename _FunctionType>
 	class TFEvent
 	{
 	public:
-		typedef function<T> FunctionType;
-
-		TFEvent()
-		{
-			mId = ++uniqueId;
-		}
-
-		int getId() const
-		{
-			return mId;
-		}
-
-	private:
-		int mId;
+		typedef _FunctionType FunctionType;
+		static const int ID = _ID;
 	};
+	
+#define DEFINE_EVENT(name, parameters) using name = TFEvent<__COUNTER__, function<parameters>>
 
-	template<typename T>
+
+	template<typename _Event, typename _FunctionType = _Event::FunctionType>
 	class TFEventHandler
 	{
 	public:
-		typedef function<T> FunctionType;
+		typedef _Event Event;
+		typedef _FunctionType FunctionType;
+		static const int ID = _Event::ID;
 
 		TFEventHandler(const FunctionType &callback)
 			: mCallback(callback)
@@ -44,79 +35,153 @@ namespace TomorrowFlower {
 		{
 			mCallback(forward<Arg>(parameters)...);
 		}
+
+		void clear()
+		{
+			mCallback = nullptr;
+		}
+
+		bool canCall()
+		{
+			return mCallback != nullptr;
+		}
 		
 	private:
 		FunctionType mCallback;
 	};
 
 
-	template<typename T>
+	template<typename _Event, typename _FunctionType = _Event::FunctionType>
 	class TFEventPool
 	{
 	public:
-		typedef function<T> FunctionType;
-		typedef TFEventHandler<T> HandlerType;
+		typedef _Event Event;
+		typedef _FunctionType FunctionType;
+		static const int ID = _Event::ID;
 
-		weak_ptr<HandlerType> registerEvent(const FunctionType &callback)
+		typedef TFEventHandler<_Event, _FunctionType> HandlerType;
+		typedef weak_ptr<HandlerType> HandlerPtr;
+
+		HandlerPtr registerEvent(const FunctionType &callback)
 		{
 			auto &handler = make_shared<HandlerType>(callback);
-			mHandlers.push_back(handler);
+			mHandlers.insert(handler);
 			return handler;
+		}
+
+		void unregisterEvent(const HandlerPtr &handler)
+		{
+			auto ptr = handler.lock();
+			if (!ptr) {
+				TFError("trying to do operation for a handler that already expired");
+				return;
+			}
+
+			auto iter = mHandlers.find(ptr);
+			if (iter == mHandlers.end()) {
+				TFError("could not find this handler in the pool");
+				return;
+			}
+
+			if (mIsDispatching) {
+				mDeletingHandlers.push_back(ptr);
+			}
+			else {
+				mHandlers.erase(iter);
+			}
 		}
 
 		template <typename ...Arg>
 		void dispatchEvent(Arg &&...parameters)
 		{
+			mIsDispatching = true;
 			for (auto &handler : mHandlers) {
-				(*handler)(forward<Arg>(parameters)...);
+				if (handler->canCall()) {
+					(*handler)(forward<Arg>(parameters)...);
+				}
+				else {
+					mDeletingHandlers.push_back(handler);
+				}
 			}
+			mIsDispatching = false;
+
+			clearDeletingHandlers();
 		}
 
 	private:
-		vector<shared_ptr<HandlerType>> mHandlers;
+		void clearDeletingHandlers()
+		{
+			for (auto &handler : mDeletingHandlers) {
+				mHandlers.erase(handler);
+			}
+			mDeletingHandlers.clear();
+		}
+
+		bool mIsDispatching = false;
+		unordered_set<shared_ptr<HandlerType>> mHandlers;
+		vector<shared_ptr<HandlerType>> mDeletingHandlers;
 	};
 
-
-	class TFEventProtocol
+	class TF_DLL TFEventProtocol
 	{
 	public:
-		template <typename T, typename _CB>
-		auto registerEvent(const TFEvent<T> &event, const _CB &callback)
+		~TFEventProtocol()
 		{
-			return _registerEvent<T>(event, callback);
-		}
+			if (mEventPools) {
+				for (auto &iter : *mEventPools) {
+					delete (iter.second);
+				}
 
-		template <typename T>
-		void unregisterEvent(weak_ptr<TFEventHandler<T>> handler)
-		{
-
-		}
-
-		template <typename T, typename ...Arg>
-		void dispatchEvent(const TFEvent<T> &event, Arg &&...parameters)
-		{
-			int id = event.getId();
-			auto eventIter = mEventPools.find(id);
-			if (eventIter != mEventPools.end()) {
-				static_cast<TFEventPool<T>*>(eventIter->second)->dispatchEvent(forward<Arg>(parameters)...);
+				delete mEventPools;
 			}
 		}
 
-	private:
-		template <typename T>
-		auto _registerEvent(const TFEvent<T> &event, const function<T> &callback)
+		template <typename Event, typename FunctionType = Event::FunctionType>
+		auto registerEvent(const FunctionType &callback)
 		{
-			int id = event.getId();
-			auto eventIter = mEventPools.find(id);
-			if (eventIter == mEventPools.end()) {
-				TFEventPool<T>* _event = new TFEventPool<T>();
-				mEventPools[id] = _event;
-				eventIter = mEventPools.find(id);
+			auto pool = findEventPool<Event>();
+			if (!pool) {
+				if (!mEventPools) {
+					mEventPools = new unordered_map<int, void*>;
+				}
+				pool = new TFEventPool<Event>();
+				(*mEventPools)[Event::ID] = pool;
 			}
-			return static_cast<TFEventPool<T>*>(eventIter->second)->registerEvent(callback);
+			return pool->registerEvent(callback);
 		}
 
+		template <typename HandlerPtr, typename HandlerType = HandlerPtr::element_type, typename Event = HandlerType::Event>
+		void unregisterEvent(const HandlerPtr &handler)
+		{
+			auto pool = findEventPool<Event>();
+			if (pool) {
+				pool->unregisterEvent(handler);
+			}
+		}
+
+		template <typename Event, typename ...Arg>
+		void dispatchEvent(Arg &&...parameters)
+		{
+			auto pool = findEventPool<Event>();
+			if (pool) {
+				pool->dispatchEvent(forward<Arg>(parameters)...);
+			}
+		}
+		
 	private:
-		unordered_map<int, void*> mEventPools;
+		template <typename Event, typename FunctionType = Event::FunctionType>
+		auto findEventPool() -> TFEventPool<Event, FunctionType>*
+		{
+			if (!mEventPools) {
+				return nullptr;
+			}
+			auto iter = mEventPools->find(Event::ID);
+			if (iter != mEventPools->end()) {
+				return static_cast<TFEventPool<Event>*>(iter->second);
+			}
+			return nullptr;
+		}
+
+		unordered_map<int, void*> *mEventPools = nullptr;
 	};
 }

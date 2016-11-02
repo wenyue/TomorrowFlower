@@ -9,7 +9,7 @@ namespace TomorrowFlower {
 	class TF_DLL TFApplication
 	{
 	public:
-		static TFApplication* getInstance();
+		static TFApplication *getInstance();
 
 	public:
 		TFApplication();
@@ -29,7 +29,7 @@ namespace TomorrowFlower {
 		virtual int getWidth() { return mWidth; }
 		virtual int getHeight() { return mHeight; }
 	protected:
-		GLFWwindow* mWindow;
+		GLFWwindow *mWindow;
 
 		int mWidth;
 		int mHeight;

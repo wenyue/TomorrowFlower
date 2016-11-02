@@ -7,7 +7,7 @@ namespace TomorrowFlower {
 	public:
 		TFTextureImplement(
 			const string &path,
-			const unsigned char* image,
+			const unsigned char *image,
 			int width,
 			int height
 		)
@@ -29,7 +29,7 @@ namespace TomorrowFlower {
 		}
 
 	private:
-		void generateTexture(const unsigned char* image)
+		void generateTexture(const unsigned char *image)
 		{
 			//Generate texture ID and load texture data 
 			glGenTextures(1, &mId);
@@ -60,7 +60,7 @@ namespace TomorrowFlower {
 
 	TFTexture::Ptr TFTexture::createByEngine(
 		const string &path,
-		const unsigned char* image,
+		const unsigned char *image,
 		int width,
 		int height
 	)

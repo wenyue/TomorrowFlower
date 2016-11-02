@@ -33,7 +33,9 @@ public: Ptr inline self() {				\
 	{
 		OBJECT_BODY(TFObject)
 	public:
-		virtual ~TFObject() {}
+		virtual ~TFObject()
+		{
+		}
 
 	protected:
 		template<class _Ty, class... _Types>

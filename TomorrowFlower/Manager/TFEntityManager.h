@@ -7,9 +7,9 @@ namespace TomorrowFlower {
 	class TF_DLL TFEntityManager
 	{
 	public:
-		static TFEntityManager* getInstance();
+		static TFEntityManager *getInstance();
 		static void destroy();
 
-		virtual TFEntity* getRootEntity() = 0;
+		virtual TFEntity *getRootEntity() = 0;
 	};
 }

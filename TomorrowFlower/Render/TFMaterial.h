@@ -10,7 +10,7 @@ namespace TomorrowFlower {
 	{
 		OBJECT_BODY(TFMaterial)
 	public:
-		static const char* DEFAULT_MATERIAL;
+		static const char *DEFAULT_MATERIAL;
 
 		static Ptr create(const string &name);
 
