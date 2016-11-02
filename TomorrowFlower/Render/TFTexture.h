@@ -6,7 +6,7 @@
 namespace TomorrowFlower {
 	class TF_DLL TFTexture : public TFObject
 	{
-		OBJECT_BODY(TFTexture)
+		OBJECT_BODY(TFTexture);
 	public:
 		static Ptr create(const string &path);
 

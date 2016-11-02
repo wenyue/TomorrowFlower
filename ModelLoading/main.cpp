@@ -11,7 +11,7 @@ using namespace TomorrowFlower;
 
 class Application : public TomorrowFlower::TFApplication
 {
-	SUPER(TomorrowFlower::TFApplication)
+	SUPER(TomorrowFlower::TFApplication);
 public:
 	Application()
 	{
@@ -22,7 +22,9 @@ public:
 	virtual void beginPlay() override
 	{
 		auto shader = TFShader::create("res/shader/default.vs", "res/shader/default.ps");
-		TFMaterial::createByEngine(TFMaterial::DEFAULT_MATERIAL, shader);
+		auto material = TFMaterial::create(TFMaterial::DEFAULT_MATERIAL, shader);
+		//material->addMaterialAction();
+
 
 		createCamera();
 		createCube();

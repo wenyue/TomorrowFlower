@@ -13,6 +13,7 @@ namespace TomorrowFlower {
 			: mMeshes(meshes)
 			, mSubNodes(subNodes)
 		{
+			setupModel();
 		}
 
 		void draw() override
@@ -20,6 +21,12 @@ namespace TomorrowFlower {
 			for (auto &mesh : mMeshes) {
 				mesh->draw();
 			}
+		}
+
+	private:
+		void setupModel()
+		{
+
 		}
 
 	private:

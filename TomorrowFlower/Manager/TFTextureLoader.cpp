@@ -15,4 +15,14 @@ namespace TomorrowFlower {
 			return texture;
 		}
 	};
+
+	TFTextureLoader * TFTextureLoader::getInstance()
+	{
+		return TFTextureLoaderImplement::TFSingleton::getInstance();
+	}
+
+	void TFTextureLoader::destroy()
+	{
+		TFTextureLoaderImplement::TFSingleton::destroy();
+	}
 }

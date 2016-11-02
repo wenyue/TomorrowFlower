@@ -6,7 +6,7 @@ namespace TomorrowFlower {
 
 	class TFMaterialImplement : public TFMaterial
 	{
-		OBJECT_BODY(TFMaterialImplement)
+		OBJECT_BODY(TFMaterialImplement);
 	public:
 		TFMaterialImplement(
 			const string &name,
@@ -15,7 +15,7 @@ namespace TomorrowFlower {
 			: mName(name)
 			, mShader(shader)
 		{
-			setupShader();
+			setupMaterial();
 		}
 
 		void onRenderBegin() override
@@ -43,24 +43,77 @@ namespace TomorrowFlower {
 		}
 
 	private:
-		void setupShader()
+		void setupMaterial()
 		{
+			// bind with projection matrix
+			if (mShader->getDefaultUniform(TFShader::UNIFORM_PROJECTION)) {
+				
+			}
+			// bind with view matrix
+			if (mShader->getDefaultUniform(TFShader::UNIFORM_VIEW)) {
 
+			}
 		}
 
 	private:
 		vector<TFMaterialAction::Ptr> mActions;
 
-		MEMBER_GET(TFShader::Ptr, Shader)
-		MEMBER_GET(string, Name)
+		MEMBER_GET(TFShader::Ptr, Shader);
+		MEMBER_GET(string, Name);
 	};
 
-	TFMaterial::Ptr TFMaterial::create(const string &name)
-	{
-		return TFMaterialManager::getInstance()->getMaterial(name);
-	}
 
-	TFMaterial::Ptr TFMaterial::createByEngine(
+	class TFMaterialInstanceImplement : public TFMaterialInstance
+	{
+	public:
+		TFMaterialInstanceImplement(const TFMaterial::Ptr &material)
+			: mMaterial(material)
+		{
+		}
+
+		void onRenderBegin() override
+		{
+			mMaterial->onRenderBegin();
+
+			for (auto &action : mActions) {
+				action->onRenderBegin(mMaterial->getShader());
+			}
+		}
+
+		void onRenderEnd() override
+		{
+			for (auto &action : mActions) {
+				action->onRenderEnd(mMaterial->getShader());
+			}
+
+			mMaterial->onRenderEnd();
+		}
+
+		void addMaterialAction(const TFMaterialAction::Ptr &action) override
+		{
+			mActions.push_back(action);
+			if (mMaterial) {
+				action->onInit(mMaterial->getShader());
+			}
+		}
+
+		TFShader::Ptr getShader() override
+		{
+			return mMaterial->getShader();
+		}
+
+		string getName() override
+		{
+			return mMaterial->getName();
+		}
+
+	private:
+		TFMaterial::Ptr mMaterial;
+		vector<TFMaterialAction::Ptr> mActions;
+	};
+
+
+	TFMaterial::Ptr TFMaterial::create(
 		const string &name,
 		const TFShader::Ptr &shader
 	)
@@ -68,5 +121,14 @@ namespace TomorrowFlower {
 		auto material = createObject<TFMaterialImplement>(name, shader);
 		TFMaterialManager::getInstance()->addMaterial(material);
 		return material;
+	}
+
+	TFMaterialInstance::Ptr TFMaterialInstance::create(
+		const string &name
+	)
+	{
+		auto material = TFMaterialManager::getInstance()->getMaterial(name);
+		auto materialInstance = createObject<TFMaterialInstanceImplement>(material);
+		return materialInstance;
 	}
 }

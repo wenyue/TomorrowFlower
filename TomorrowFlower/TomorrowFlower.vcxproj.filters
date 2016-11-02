@@ -40,9 +40,6 @@
     <ClInclude Include="Render\TFMaterial.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="Render\TFMaterialInstance.h">
-      <Filter>Render</Filter>
-    </ClInclude>
     <ClInclude Include="Render\TFMesh.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -58,12 +55,6 @@
     <ClInclude Include="Render\TFVertex.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="Render\MaterialActions\TFMaterialActionBindTexture.hpp">
-      <Filter>Render\MaterialActions</Filter>
-    </ClInclude>
-    <ClInclude Include="Render\MaterialActions\TFMaterialAction.h">
-      <Filter>Render\MaterialActions</Filter>
-    </ClInclude>
     <ClInclude Include="Manager\TFEntityManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
@@ -71,9 +62,6 @@
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="Manager\TFModelLoader.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager\TFModelLoader.hpp">
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="Manager\TFModelManager.h">
@@ -86,9 +74,6 @@
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="Manager\TFTextureLoader.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager\TFTextureLoader.hpp">
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="Manager\TFTextureManager.h">
@@ -127,7 +112,19 @@
     <ClInclude Include="Object\TFComponentImpl.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Manager\TFEventProtocol.cpp">
+    <ClInclude Include="Render\MaterialActions\TFMaterialAction.h">
+      <Filter>Render\MaterialActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\MaterialActions\TFMaterialActionBindTexture.cpp">
+      <Filter>Render\MaterialActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\MaterialActions\TFMaterialActionBindTexture.h">
+      <Filter>Render\MaterialActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFModelLoader.cpp">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\TFTextureLoader.cpp">
       <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
@@ -142,9 +139,6 @@
       <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="Render\TFMaterial.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Render\TFMaterialInstance.cpp">
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="Render\TFMesh.cpp">

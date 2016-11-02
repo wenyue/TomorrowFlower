@@ -1,5 +1,5 @@
 #include "TFTextureManager.h"
-#include "TFTextureLoader.hpp"
+#include "TFTextureLoader.h"
 #include "TFSingleton.h"
 #include <unordered_map>
 
@@ -9,7 +9,7 @@ namespace TomorrowFlower {
 	public:
 		TFTextureManagerImplement()
 		{
-			mLoader = TFTextureLoaderImplement::getInstance();
+			mLoader = TFTextureLoader::getInstance();
 		}
 
 		void setTextureLoader(TFTextureLoader *loader) override
@@ -41,7 +41,7 @@ namespace TomorrowFlower {
 		unordered_map<string, TFTexture::Ptr> mTextures;
 	};
 
-	TFTextureManager *TFTextureManager::getInstance()
+	TFTextureManager * TFTextureManager::getInstance()
 	{
 		return TFTextureManagerImplement::TFSingleton::getInstance();
 	}

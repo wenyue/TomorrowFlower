@@ -6,10 +6,6 @@ namespace TomorrowFlower {
 	{
 		auto mesh = TFMesh::create();
 
-		// material instance
-		auto defaultMaterial = TFMaterial::create(TFMaterial::DEFAULT_MATERIAL);
-		mesh->setMaterial(defaultMaterial);
-
 		// vertex
 		vector<TFVertex> vertices = {
 			{ TFVec3(-size.x,	size.y,		-size.z) },

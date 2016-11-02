@@ -6,7 +6,7 @@
 namespace TomorrowFlower {
 	class TF_DLL TFShader : public TFObject
 	{
-		OBJECT_BODY(TFShader)
+		OBJECT_BODY(TFShader);
 	public:
 		static Ptr create(const string &vertexPath, const string &fragmentPath);
 
@@ -37,12 +37,12 @@ namespace TomorrowFlower {
 		/*	Default attribs are predefined in fix location, size, type and name.
 		 *	This method return the attrib info by specify attrib type.
 		 */
-		static const Attrib & getDefaultAttribInfo(AttribType attribType);
+		static const Attrib * getDefaultAttribInfo(AttribType attribType);
 		/*	Similar as getDefaultAttribInfo, but it is not static method,
 		 *	and return null while the instance hasn't speify attrib type.
 		 */
-		virtual const Attrib & getDefaultAttrib(AttribType attribType) = 0;
-		virtual const Attrib & getCustomerAttrib(const string &attribName) = 0;
+		virtual const Attrib * getDefaultAttrib(AttribType attribType) = 0;
+		virtual const Attrib * getCustomerAttrib(const string &attribName) = 0;
 
 		///////////////////////////////////////////////////////////////////////
 		// Uniform
@@ -60,8 +60,8 @@ namespace TomorrowFlower {
 			GLenum type;
 			string name;
 		};
-		virtual const Uniform & getDefaultUniform(UniformType uniformType) = 0;
-		virtual const Uniform & getCustomerUniform(const string &uniformName) = 0;
+		virtual const Uniform * getDefaultUniform(UniformType uniformType) = 0;
+		virtual const Uniform * getCustomerUniform(const string &uniformName) = 0;
 
 		///////////////////////////////////////////////////////////////////////
 		// Texture

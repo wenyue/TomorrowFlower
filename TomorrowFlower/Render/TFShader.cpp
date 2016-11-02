@@ -7,11 +7,11 @@
 #include <unordered_map>
 
 namespace TomorrowFlower {
-	const TFShader::Attrib & TFShader::getDefaultAttribInfo(TFShader::AttribType attribType)
+	const TFShader::Attrib * TFShader::getDefaultAttribInfo(TFShader::AttribType attribType)
 	{
 		TFAssert(default_attribs[attribType].location == attribType, "");
 
-		return default_attribs[attribType];
+		return &default_attribs[attribType];
 	}
 
 	class TFShaderImplement : public TFShader
@@ -24,7 +24,7 @@ namespace TomorrowFlower {
 			: mVertexPath(vertexPath)
 			, mFragmentPath(fragmentPath)
 		{
-			setupProgram();
+			setupShader();
 		}
 
 		void use() override
@@ -47,24 +47,36 @@ namespace TomorrowFlower {
 			return mFragmentPath;
 		}
 
-		const Attrib & getDefaultAttrib(AttribType attribType) override
+		const Attrib * getDefaultAttrib(AttribType attribType) override
 		{
-			return mDefaultAttribs[attribType];
+			if (mDefaultAttribs.count(attribType)) {
+				return &mDefaultAttribs[attribType];
+			}
+			return nullptr;
 		}
 
-		const Attrib & getCustomerAttrib(const string &attribName) override
+		const Attrib * getCustomerAttrib(const string &attribName) override
 		{
-			return mCustomerAttribs[attribName];
+			if (mCustomerAttribs.count(attribName)) {
+				return &mCustomerAttribs[attribName];
+			}
+			return nullptr;
 		}
 
-		const Uniform & getDefaultUniform(UniformType uniformType) override
+		const Uniform * getDefaultUniform(UniformType uniformType) override
 		{
-			return mDefaultUniforms[uniformType];
+			if (mDefaultUniforms.count(uniformType)) {
+				return &mDefaultUniforms[uniformType];
+			}
+			return nullptr;
 		}
 
-		const Uniform & getCustomerUniform(const string &uniformName) override
+		const Uniform * getCustomerUniform(const string &uniformName) override
 		{
-			return mCustomerUniforms[uniformName];
+			if (mCustomerUniforms.count(uniformName)) {
+				return &mCustomerUniforms[uniformName];
+			}
+			return nullptr;
 		}
 
 		GLint getUnusedTextureUnit() override
@@ -86,7 +98,7 @@ namespace TomorrowFlower {
 		}
 
 	private:
-		void setupProgram()
+		void setupShader()
 		{
 			// 1. Retrieve the vertex/fragment source code from filePath
 			string vertexCode;

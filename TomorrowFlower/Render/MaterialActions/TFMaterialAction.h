@@ -5,9 +5,9 @@
 #include "TFShader.h"
 
 namespace TomorrowFlower {
-	class TFMaterialAction : public TFObject
+	class TF_DLL TFMaterialAction : public TFObject
 	{
-		OBJECT_BODY(TFMaterialAction)
+		OBJECT_BODY(TFMaterialAction);
 	public:
 		virtual void onInit(const TFShader::Ptr &shader) {};
 		virtual void onRenderBegin(const TFShader::Ptr &shader) {};

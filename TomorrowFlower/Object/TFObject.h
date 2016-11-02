@@ -11,27 +11,19 @@ inline shared_ptr<_Ty> createObject(_Types&&... _Args)
 	return ptr;
 }
 
-#define OBJECT_BODY(CLASS_NAME)			\
-OBJECT_SHARED_PTR(CLASS_NAME)			\
-OBJECT_WEAK_PTR(CLASS_NAME)				\
-OBJECT_GET_SELF(CLASS_NAME)
-
-#define OBJECT_SHARED_PTR(CLASS_NAME)	\
-public: typedef shared_ptr<CLASS_NAME> Ptr;
-
-#define OBJECT_WEAK_PTR(CLASS_NAME)	\
-public: typedef weak_ptr<CLASS_NAME> WPtr;
-
-#define OBJECT_GET_SELF(CLASS_NAME)		\
-public: Ptr inline self() {				\
+#define OBJECT_BODY(CLASS_NAME)								\
+public: typedef shared_ptr<CLASS_NAME> Ptr;					\
+public: Ptr inline self() {									\
 	return dynamic_pointer_cast<CLASS_NAME>(mSelf.lock());	\
-}
+}															\
+public: typedef weak_ptr<CLASS_NAME> WPtr
+
 
 	class TFObject;
 	template class TF_DLL weak_ptr<TFObject>;
 	class TF_DLL TFObject
 	{
-		OBJECT_BODY(TFObject)
+		OBJECT_BODY(TFObject);
 	public:
 		virtual ~TFObject()
 		{

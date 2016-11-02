@@ -1,5 +1,5 @@
 #include "TFModelManager.h"
-#include "TFModelLoader.hpp"
+#include "TFModelLoader.h"
 #include "TFSingleton.h"
 #include <unordered_map>
 
@@ -9,7 +9,7 @@ namespace TomorrowFlower {
 	public:
 		TFModelManagerImplement()
 		{
-			mLoader = TFModelLoaderImplement::getInstance();
+			mLoader = TFModelLoader::getInstance();
 		}
 
 		void setModelLoader(TFModelLoader *loader) override
@@ -45,7 +45,7 @@ namespace TomorrowFlower {
 		unordered_map<string, TFModel::Ptr> mModels;
 	};
 
-	TFModelManager *TFModelManager::getInstance()
+	TFModelManager * TFModelManager::getInstance()
 	{
 		return TFModelManagerImplement::TFSingleton::getInstance();
 	}

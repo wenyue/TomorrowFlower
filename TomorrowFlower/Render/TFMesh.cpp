@@ -12,13 +12,17 @@ namespace TomorrowFlower {
 
 		void draw() override
 		{
-			mMaterial->onRenderBegin();
+			if (!mMaterial) {
+				return;
+			}
 
 			// Refresh VBO and EBO if it is dirty.
 			if (mIsDirty) {
 				RefreshBuffer();
 				mIsDirty = false;
 			}
+
+			mMaterial->onRenderBegin();
 
 			// Draw mesh
 			glBindVertexArray(mVAO);
@@ -71,12 +75,12 @@ namespace TomorrowFlower {
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, mIndices.size() * sizeof(GLuint), &mIndices[0], GL_STATIC_DRAW);
 
 			auto setVertexAttrib = [&](TFShader::AttribType attribType, size_t offset) {
-				auto &attr = TFShader::getDefaultAttribInfo(attribType);
-				glEnableVertexAttribArray(attr.location);
+				auto attr = TFShader::getDefaultAttribInfo(attribType);
+				glEnableVertexAttribArray(attr->location);
 				GLenum type;
 				GLint size;
-				convertAttribType(attr.type, type, size);
-				glVertexAttribPointer(attr.location, size, type,
+				convertAttribType(attr->type, type, size);
+				glVertexAttribPointer(attr->location, size, type,
 					GL_FALSE, sizeof(TFVertex), (GLvoid*)offset);
 			};
 
@@ -99,7 +103,7 @@ namespace TomorrowFlower {
 
 		bool mIsDirty;
 
-		MEMBER(TFMaterial::Ptr, Material);
+		MEMBER(TFMaterialInstance::Ptr, Material);
 	};
 
 	TFMesh::Ptr TFMesh::create()

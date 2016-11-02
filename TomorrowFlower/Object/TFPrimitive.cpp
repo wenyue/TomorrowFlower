@@ -23,8 +23,13 @@ namespace TomorrowFlower {
 			}
 		}
 
+		void setMesh(const TFMesh::Ptr &mesh) override
+		{
+			mMesh = mesh;
+		}
+
 	private:
-		MEMBER(TFMesh::Ptr, Mesh)
+		MEMBER_GET(TFMesh::Ptr, Mesh);
 	};
 
 	TFPrimitive::Ptr TFPrimitive::create()

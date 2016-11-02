@@ -6,12 +6,9 @@
 namespace TomorrowFlower {
 	class TF_DLL TFCamera : public TFComponent
 	{
-		OBJECT_BODY(TFCamera)
+		OBJECT_BODY(TFCamera);
 	public:
 		static Ptr create();
-
-		virtual void beginPlay() override = 0;
-		virtual void draw() override = 0;
 
 		// Active current camera to be the main camera.
 		static void setActiveCamera(const Ptr &camera);

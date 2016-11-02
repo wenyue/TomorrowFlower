@@ -3,7 +3,7 @@
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
 #include "assimp/scene.h"
-#include "MaterialActions/TFMaterialActionBindTexture.hpp"
+#include "MaterialActions/TFMaterialActionBindTexture.h"
 #include "TFShaderDefine.h"
 
 namespace TomorrowFlower {
@@ -114,7 +114,7 @@ namespace TomorrowFlower {
 
 		TFMaterialInstance::Ptr processMaterial(aiMaterial *material, const string &directory)
 		{
-			auto materialInstance = TFMaterialInstance::create(TFMaterial::create(TFMaterial::DEFAULT_MATERIAL));
+			auto materialInstance = TFMaterialInstance::create(TFMaterial::DEFAULT_MATERIAL);
 
 			// We assume a convention for sampler names in the shaders. Each diffuse texture should be named
 			// as 'texture_diffuseN' where N is a sequential number ranging from 1 to MAX_SAMPLER_NUMBER. 
@@ -128,7 +128,7 @@ namespace TomorrowFlower {
 			for (size_t i = 0; i < diffuseMaps.size(); ++i) {
 				auto &diffuse = diffuseMaps[i];
 				string diffuseName(MODEL_TEXTURE_DIFFUSE + to_string(i));
-				materialInstance->addMaterialAction(TFMaterialActionBindTexture::create(
+				materialInstance->addMaterialAction(createMaterialActionBindTexture(
 					diffuseName,
 					diffuse
 				));
@@ -138,7 +138,7 @@ namespace TomorrowFlower {
 			for (size_t i = 0; i < specularMaps.size(); ++i) {
 				auto &specular = specularMaps[i];
 				string specularName(MODEL_TEXTURE_SPECULAR + to_string(i));
-				materialInstance->addMaterialAction(TFMaterialActionBindTexture::create(
+				materialInstance->addMaterialAction(createMaterialActionBindTexture(
 					specularName,
 					specular
 				));
@@ -161,4 +161,14 @@ namespace TomorrowFlower {
 			return textures;
 		}
 	};
+
+	TFModelLoader * TFModelLoader::getInstance()
+	{
+		return TFModelLoaderImplement::TFSingleton::getInstance();
+	}
+
+	void TFModelLoader::destroy()
+	{
+		TFModelLoaderImplement::TFSingleton::destroy();
+	}
 }

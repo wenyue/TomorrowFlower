@@ -8,7 +8,7 @@
 namespace TomorrowFlower {
 	class TF_DLL TFEntity : public TFObject
 	{
-		OBJECT_BODY(TFEntity)
+		OBJECT_BODY(TFEntity);
 	public:
 		static Ptr create(const string &name = "", const Ptr &parent = nullptr);
 
@@ -23,7 +23,7 @@ namespace TomorrowFlower {
 		virtual int getChildCount() = 0;
 
 		// About the parent
-		PORPERTY_GET(Ptr, Parent)
+		PORPERTY_GET(Ptr, Parent);
 		virtual void removeFromParent() = 0;
 
 		// About the component
@@ -38,6 +38,6 @@ namespace TomorrowFlower {
 		inline void lookAt(const TFVec3 &center) { transform.lookAt(center); }
 
 		// Porpeties
-		PORPERTY_GET(string, Name)
+		PORPERTY_GET(string, Name);
 	};
 }

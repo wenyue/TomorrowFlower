@@ -3,7 +3,7 @@
 #include "Application/TFApplication.h"
 
 namespace TomorrowFlower {
-	TFCamera::Ptr sMainCamera = nullptr;
+	TFCamera::Ptr gMainCamera = nullptr;
 
 	class TFCameraImplement : public TFComponentImpl<TFCamera>
 	{
@@ -44,11 +44,11 @@ namespace TomorrowFlower {
 
 	void TFCamera::setActiveCamera(const Ptr &camera)
 	{
-		sMainCamera = camera;
+		gMainCamera = camera;
 	}
 
 	TFCamera::Ptr TFCamera::getActiveCamera()
 	{
-		return sMainCamera;
+		return gMainCamera;
 	}
 }

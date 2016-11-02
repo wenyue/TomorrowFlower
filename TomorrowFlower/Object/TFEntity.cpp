@@ -67,7 +67,7 @@ namespace TomorrowFlower {
 
 		vector<TFComponent::Ptr> mComponents;
 
-		MEMBER_GET(string, Name)
+		MEMBER_GET(string, Name);
 	};
 
 	TFEntity::Ptr TFEntity::create(const string &name, const Ptr &parent)

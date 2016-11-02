@@ -76,15 +76,14 @@
     <ClInclude Include="Manager\TFComponentManager.h" />
     <ClInclude Include="Manager\TFEntityManager.h" />
     <ClInclude Include="Manager\TFEventProtocol.h" />
-    <ClInclude Include="Manager\TFEventProtocol.cpp" />
     <ClInclude Include="Manager\TFMaterialManager.h" />
     <ClInclude Include="Manager\TFModelLoader.h" />
-    <ClInclude Include="Manager\TFModelLoader.hpp" />
+    <ClInclude Include="Manager\TFModelLoader.cpp" />
     <ClInclude Include="Manager\TFModelManager.h" />
     <ClInclude Include="Manager\TFShaderManager.h" />
     <ClInclude Include="Manager\TFSingleton.h" />
     <ClInclude Include="Manager\TFTextureLoader.h" />
-    <ClInclude Include="Manager\TFTextureLoader.hpp" />
+    <ClInclude Include="Manager\TFTextureLoader.cpp" />
     <ClInclude Include="Manager\TFTextureManager.h" />
     <ClInclude Include="Object\TFCamera.h" />
     <ClInclude Include="Object\TFComponent.h" />
@@ -95,9 +94,9 @@
     <ClInclude Include="Object\TFPrimitive.h" />
     <ClInclude Include="Object\TFTransform.h" />
     <ClInclude Include="Render\MaterialActions\TFMaterialAction.h" />
-    <ClInclude Include="Render\MaterialActions\TFMaterialActionBindTexture.hpp" />
+    <ClInclude Include="Render\MaterialActions\TFMaterialActionBindTexture.cpp" />
+    <ClInclude Include="Render\MaterialActions\TFMaterialActionBindTexture.h" />
     <ClInclude Include="Render\TFMaterial.h" />
-    <ClInclude Include="Render\TFMaterialInstance.h" />
     <ClInclude Include="Render\TFMesh.h" />
     <ClInclude Include="Render\TFShader.h" />
     <ClInclude Include="Render\TFShaderDefine.h" />
@@ -121,7 +120,6 @@
     <ClCompile Include="Object\TFModel.cpp" />
     <ClCompile Include="Object\TFPrimitive.cpp" />
     <ClCompile Include="Render\TFMaterial.cpp" />
-    <ClCompile Include="Render\TFMaterialInstance.cpp" />
     <ClCompile Include="Render\TFMesh.cpp" />
     <ClCompile Include="Render\TFShader.cpp" />
     <ClCompile Include="Render\TFTexture.cpp" />

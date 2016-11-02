@@ -19,7 +19,7 @@ namespace TomorrowFlower {
 
 	class TF_DLL TFComponent : public TFObject, TFEventProtocol
 	{
-		OBJECT_BODY(TFComponent)
+		OBJECT_BODY(TFComponent);
 	public:
 		~TFComponent()
 		{
